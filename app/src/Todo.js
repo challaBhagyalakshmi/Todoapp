@@ -45,13 +45,26 @@ const Todo = () => {
     setTodos(newTodos);
     }
 
+    const updateStatus = (todoItem) => {
+        todos.map((todo) => {
+          if (todo.id == todoItem.id) {
+            todo.completed = !todo.completed;
+          }
+        });
+        
+        axios.put('http://localhost:3000/todoapp/updateStatus', {
+          id: todoItem.id,
+            completed: todoItem.completed,
+        });
+    };
+    
     return (<div>
         <h1>Todo app</h1>
         <div style={{ marginLeft: 300, borderWidth: "2px", width: '50%', 'borderStyle': 'solid', borderColor: 'black', paddingLeft: 20, borderBlockColor: 'black',}}>
             <div>
                 {todos.map((todo) => {
                     return (<div>
-                        <Checkbox/>
+                        <Checkbox onClick={ ()=>updateStatus(todo)}/>
                         <span style={{ margin: 0, height: 50, borderBottomWidth: '2px', borderBottomStyle: 'solid', width: '100%' }}>{todo.todoName}</span>
                         <ClearIcon style={{ float: 'right' }}
                     onClick={() => removeTodo(todo)}/>

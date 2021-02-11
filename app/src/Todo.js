@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Checkbox } from '@material-ui/core';
+import ClearIcon from '@material-ui/icons/Clear';
 
 const Todo = () => {
     const [todo, setTodo] = useState('');
@@ -35,13 +37,24 @@ const Todo = () => {
         setTodo('');
     }
 
+    const removeTodo = (todoItem) => {
+        const newTodos = todos.filter((todo) => todo.id !== todoItem.id);
+    axios.delete('http://localhost:3000/todoapp/delete', {
+      data: { id: todoItem.id },
+    });
+    setTodos(newTodos);
+    }
+
     return (<div>
         <h1>Todo app</h1>
         <div style={{ marginLeft: 300, borderWidth: "2px", width: '50%', 'borderStyle': 'solid', borderColor: 'black', paddingLeft: 20, borderBlockColor: 'black',}}>
             <div>
                 {todos.map((todo) => {
                     return (<div>
+                        <Checkbox/>
                         <span style={{ margin: 0, height: 50, borderBottomWidth: '2px', borderBottomStyle: 'solid', width: '100%' }}>{todo.todoName}</span>
+                        <ClearIcon style={{ float: 'right' }}
+                    onClick={() => removeTodo(todo)}/>
                     </div>);
                 })}
             </div>

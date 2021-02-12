@@ -20,7 +20,7 @@ const Todo = () => {
             console.log(data);
             setTodos(data);
         })
-    })
+    },[todo])
 
     const inputHandler = (event) => {
         setTodo(event.target.value);
@@ -60,19 +60,21 @@ const Todo = () => {
     
     return (<div>
         <h1>Todo app</h1>
-        <div style={{ marginLeft: 300, borderWidth: "2px", width: '50%', 'borderStyle': 'solid', borderColor: 'black', paddingLeft: 20, borderBlockColor: 'black',}}>
+        <div style={{ marginLeft: 300, borderWidth: "2px", width: '50%', 'borderStyle': 'solid', borderColor: 'black', borderBlockColor: 'black',borderRadius:10,borderTopLeftRadius:5,borderTopRightRadius:5}}>
             <div>
                 {todos.map((todo) => {
-                    return (<div>
+                    return (<div style={{marginLeft:0,borderBottomWidth:'2px',borderStyle:'outset',marginLeft:0,textAlign:'start'}}>
                         <Checkbox onClick={ ()=>updateStatus(todo)}/>
-                        <span style={{ margin: 0, height: 50, borderBottomWidth: '2px', borderBottomStyle: 'solid', width: '100%' }}>{todo.todoName}</span>
+                        <span style={{ margin: 0, height: 50,textAlign:'start' }}>{todo.todoName}</span>
                         <ClearIcon style={{ float: 'right' }}
                     onClick={() => removeTodo(todo)}/>
                     </div>);
                 })}
             </div>
-            <input type="text" autoFocus="true" placeholder="Enter todo" value={todo} onChange={ inputHandler} style={{ marginLeft:0,width:'70%',height: 20 }} />
-            <button style={{ marginLeft: 0, backgroundColor: 'gray', color: 'white', width: '10%', height: 25 }} onClick={addTodo}>Submit</button>
+            <div style={{marginTop:40,marginBottom:20,marginLeft:0,float:'start'}}>
+            <input type="text" autoFocus="true" placeholder="Enter todo" value={todo} onChange={ inputHandler} style={{marginLeft:0,borderWidth:'2px',borderTopWidth:'8px',borderStyle:'outset',borderColor:'brown',height: 30,width:'85%' }} />
+                <button style={{ marginLeft: 10, backgroundColor: 'gray', color: 'white', width: '10%', height: 30 }} onClick={addTodo}>Submit</button>
+                </div>
         </div>
     </div>);
 }

@@ -3,7 +3,7 @@ services:
   app:
     build: 
       context: ./app
-      dockerfile: ./app/Dockerfile
+      dockerfile: /Users/bhagyalakshmi/Documents/mongodbLearning/app/Dockerfile
     ports:
       - '3000:3000'
     depends_on: 
@@ -11,12 +11,12 @@ services:
   server:
     build: 
       context: ./server
-      dockerfile: ./server/Dockerfile
+      dockerfile: /Users/bhagyalakshmi/Documents/mongodbLearning/server/Dockerfile
     ports: 
       - '5000:5000'
     depends_on: 
       - mongo
   mongo:
-    image:mongo
+    image: mongo
     ports: 
       - '27017:27017'

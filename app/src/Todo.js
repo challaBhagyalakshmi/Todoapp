@@ -64,7 +64,7 @@ const Todo = () => {
             <div>
                 {todos.map((todo) => {
                     return (<div style={{marginLeft:0,borderBottomWidth:'2px',borderStyle:'outset',marginLeft:0,textAlign:'start'}}>
-                        <Checkbox onClick={ ()=>updateStatus(todo)}/>
+                        <Checkbox defaultChecked={ todo.completed} onClick={ ()=>updateStatus(todo)} color="primary"/>
                         <span style={{ margin: 0, height: 50,textAlign:'start' }}>{todo.todoName}</span>
                         <ClearIcon style={{ float: 'right' }}
                     onClick={() => removeTodo(todo)}/>
